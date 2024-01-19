@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: rgb(33, 33, 126);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__game {
+    width: 40%;
+    min-width: 300px;
+    background-color: rgb(240, 228, 228);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.container__game input {
+    padding: 7px;
+    border: 2px solid black;
+    border-radius: 10px;
+    outline: none;
+}
+
+.container__game button {
+    padding: 7px;
+    background-color: white;
+    text-transform: uppercase;
+    border: 2px solid black;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
