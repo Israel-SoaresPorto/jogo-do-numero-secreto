@@ -6,14 +6,13 @@ const remainingsAttemps = document.querySelector("#remainings-attemps");
 const attempWord = document.querySelector("#attemp-word");
 const numberInput = document.querySelector("#number-input");
 const guessBtn = document.querySelector("#guess-btn");
-const responseText = document.querySelector("#response-text");
+const hintText = document.querySelector("#hint-text");
 const restartBtn = document.querySelector("#restart-btn");
 
 let min = 1; //valor minímo do número secreto
 let max = 100; // valor máximo do número secreto
 let secretNumber = Math.floor(Math.random() * (max - min) + min); //gera um número aleatorio
 let attemps = 10; // número de tentativas para acertar o número
-restartBtn.setAttribute("disabled", true); //desabilita botão de reiniciar
 
 // mostra o valor minimo para acertar o número
 numberMin.textContent = min;
@@ -28,21 +27,21 @@ attempWord.textContent = attemps > 1 ? "tentativas" : "tentativa";
 //função para verificar o número secreto
 function isSecretNumber() {
   if (numberInput.value == secretNumber) {
-    responseText.textContent = "parabéns, voçê acertou o número secreto";
+    hintText.textContent = "parabéns, voçê acertou o número secreto";
     guessBtn.setAttribute("disabled", true); //desativa botão de chute
     restartBtn.removeAttribute("disabled"); //habilita botão de reiniciar
   } else {
     if (numberInput.value > secretNumber) {
-      responseText.textContent = "o chute foi maior que o número secreto.";
+      hintText.textContent = "o chute foi maior que o número secreto.";
       attemps--;
     } else {
-      responseText.textContent = "o chute foi menor que o número secreto.";
+      hintText.textContent = "o chute foi menor que o número secreto.";
       attemps--;
     }
   }
 
   if (attemps == 0) {
-    responseText.textContent = `que pena, voçê não acertou o número secreto que era: ${secretNumber}`;
+    hintText.textContent = `que pena, voçê não acertou o número secreto que era: ${secretNumber}`;
     guessBtn.setAttribute("disabled", true);
     restartBtn.removeAttribute("disabled");
   }
@@ -52,10 +51,25 @@ function isSecretNumber() {
   attempWord.textContent = attemps > 1 ? "tentativas" : "tentativa";
 }
 
+//função para reiniciar o jogo
+function resetGame() {
+  min = 1;
+  max = 100;
+  secretNumber = Math.floor(Math.random() * (max - min) + min);
+  attemps = 10;
+  guessBtn.removeAttribute("disabled");
+  restartBtn.setAttribute("disabled", true);
+
+  numberMin.textContent = min;
+  numberMax.textContent = max;
+  remainingsAttemps.textContent = attemps;
+  attempWord.textContent = attemps > 1 ? "tentativas" : "tentativa";
+  //limpa o texto de dica
+  hintText.textContent = "";
+}
+
 //evento para verificar o número secreto
 guessBtn.addEventListener("click", isSecretNumber);
 
 //evento para reiniciar o game
-restartBtn.addEventListener("click", () => {
-  window.location.reload();
-});
+restartBtn.addEventListener("click", resetGame);
