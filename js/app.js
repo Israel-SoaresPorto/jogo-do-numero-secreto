@@ -12,7 +12,7 @@ const restartBtn = document.querySelector("#restart-btn");
 let min = 1; //valor minímo do número secreto
 let max = 100; // valor máximo do número secreto
 let secretNumber = Math.floor(Math.random() * (max - min) + min); //gera um número aleatorio
-let attemps = 10; // número de tentativas para acertar o número
+let attemps = 7; // número de tentativas para acertar o número
 
 // mostra o valor minimo para acertar o número
 numberMin.textContent = min;
